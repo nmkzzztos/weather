@@ -7,6 +7,6 @@ This is a small pet project to get to know react better and interact with rest a
 
 
 ## Stack
-- [React](https://html.com/)
+- [ReactJS](https://reactjs.org/)
 - [SASS](https://sass-lang.com/)
 - [REST api](https://openweathermap.org/)
