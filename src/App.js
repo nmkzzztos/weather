@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.sass";
 
 import Main from "./components/Main";

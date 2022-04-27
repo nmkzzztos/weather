@@ -2,7 +2,6 @@ import React from "react";
 
 import gitHub from "../images/footer/GitHub.svg";
 import linkedIn from "../images/footer/LinkedIn.svg";
-import logo from "../images/footer/logo.svg";
 
 const Footer = () => {
   return (

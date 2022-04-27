@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import moment from "moment";
+import "moment-timezone";
+
 import Footer from "./Footer";
 
 import clearSky from "../images/clear_sky.svg";
@@ -62,9 +65,68 @@ const Main = () => {
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
-    let time = d.getHours() + ":" + d.getMinutes();
 
-    return `${time} ${day}, ${date} ${month} ${year}`;
+    return ` ${day}, ${date} ${month} ${year}`;
+  };
+
+  const getContinent = () => {
+    if (
+      weather.sys.country === "ES" ||
+      weather.sys.country === "DE" ||
+      weather.sys.country === "RU" ||
+      weather.sys.country === "UA" ||
+      weather.sys.country === "AT" ||
+      weather.sys.country === "AL" ||
+      weather.sys.country === "AD" ||
+      weather.sys.country === "BE" ||
+      weather.sys.country === "BG" ||
+      weather.sys.country === "DK" ||
+      weather.sys.country === "IT" ||
+      weather.sys.country === "MD" ||
+      weather.sys.country === "NO" ||
+      weather.sys.country === "NL" ||
+      weather.sys.country === "PT" ||
+      weather.sys.country === "GB" ||
+      weather.sys.country === "FR" ||
+      weather.sys.country === "CZ" ||
+      weather.sys.country === "SE" ||
+      weather.sys.country === "CH"
+    ) {
+      return "Europe";
+    } else if (
+      weather.sys.country === "US" ||
+      weather.sys.country === "CA" ||
+      weather.sys.country === "DK" ||
+      weather.sys.country === "PH" ||
+      weather.sys.country === "BR" ||
+      weather.sys.country === "CU" ||
+      weather.sys.country === "HT" ||
+      weather.sys.country === "GT" ||
+      weather.sys.country === "PA" ||
+      weather.sys.country === "AR" ||
+      weather.sys.country === "MX"
+    )
+      return "America";
+    else if (
+      weather.sys.country === "JP" ||
+      weather.sys.country === "PH" ||
+      weather.sys.country === "LK" ||
+      weather.sys.country === "SG" ||
+      weather.sys.country === "AE" ||
+      weather.sys.country === "CN" ||
+      weather.sys.country === "ID" ||
+      weather.sys.country === "IL" ||
+      weather.sys.country === "HK" ||
+      weather.sys.country === "GE"
+    )
+      return "Asia";
+    else if (
+      weather.sys.country === "AU" ||
+      weather.sys.country === "NZ" ||
+      weather.sys.country === "NF"
+    )
+      return "Australia";
+    return;
   };
 
   const switchImg = () => {
@@ -183,7 +245,16 @@ const Main = () => {
                 <div className="location">
                   {weather.name}, {weather.sys.country}
                 </div>
-                <div className="date">{dateBuilder(date)}</div>
+                <div className="date">
+                  <span>
+                    {moment()
+                      .tz(
+                        `${getContinent()}/${weather.name.split(" ").join("_")}`
+                      )
+                      .format("hh:mm")}
+                  </span>
+                  {dateBuilder(date)}
+                </div>
               </div>
               <div className="weather">{weather.weather[0].description}</div>
             </div>
